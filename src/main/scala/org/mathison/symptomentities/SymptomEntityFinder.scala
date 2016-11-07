@@ -32,17 +32,9 @@ class SymptomEntityFinder(containsSymptomEntity: (Tree) => Boolean,
             return List(node)
 
         val children =
-            if (node.label.value == "ROOT")
-                node
-                    .getChildrenAsList
-                    .asScala.toList
-                    .head
-                    .getChildrenAsList
-                    .asScala.toList
-            else
-                node
-                    .getChildrenAsList
-                    .asScala.toList
+            node
+                .getChildrenAsList
+                .asScala.toList
 
         children flatMap { child =>
 
