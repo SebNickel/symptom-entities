@@ -11,14 +11,14 @@ class CategoryExtractor(client: IdiliaClient) {
 
     private val logger = LogManager.getLogger(classOf[CategoryExtractor])
 
-    private val fskQueryPipeline = new FineSenseKeysQueryPipeline(client)
+    private val fineSenseKeysQueryPipeline = new FineSenseKeysQueryPipeline(client)
     private val categoriesQueryPipeline = new CategoriesQueryPipeline(client)
 
     def apply(lemma: String): List[String] = {
 
         logger.info(s"Extracting categories for lemma '$lemma'")
 
-        val fineSenseKeys = fskQueryPipeline(lemma)
+        val fineSenseKeys = fineSenseKeysQueryPipeline(lemma)
 
         val categories = fineSenseKeys flatMap { fineSenseKey =>
 
