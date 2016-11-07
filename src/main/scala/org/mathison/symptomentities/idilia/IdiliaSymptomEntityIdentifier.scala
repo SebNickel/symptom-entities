@@ -18,13 +18,13 @@ to noun phrases that contain no further noun phrases, and the latter to noun phr
 class IdiliaSymptomEntityIdentifier(categoryExtractor: CategoryExtractor,
                                     val telltaleCategories: List[String]) {
 
-    private val presenceBasedDetector =
+    private val presenceBasedIdentifier =
         new PresenceBasedIdentifier(
             categoryExtractor,
             telltaleCategories
         )
 
-    private val ratioBasedDetector =
+    private val ratioBasedIdentifier =
         new RatioBasedIdentifier(
             categoryExtractor,
             telltaleCategories
@@ -46,14 +46,18 @@ class IdiliaSymptomEntityIdentifier(categoryExtractor: CategoryExtractor,
                 .asScala.toVector
                 .map { _.word }
 
+        /*
+        If `ratio` is set to 0, we use the PresenceBasedIdentifier even when the noun phrase contains further
+        noun phrases.
+         */
         if (!ContainsNounPhrase(node) || ratio == 0) {
 
-            presenceBasedDetector(lemmas)
+            presenceBasedIdentifier(lemmas)
 
         }
         else {
 
-            ratioBasedDetector(lemmas, ratio)
+            ratioBasedIdentifier(lemmas, ratio)
 
         }
 
