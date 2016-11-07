@@ -12,9 +12,9 @@ object PackageCategoriesQuery {
 
     private val gson = new Gson()
 
-    def apply(fsk: String): String = {
+    def apply(fineSenseKey: String): String = {
 
-        val dto = CategoriesQueryDto(fsk, List().asJava)
+        val dto = CategoriesQueryDto(fineSenseKey, List().asJava)
 
         val listOfDto = List(dto).asJava
 
