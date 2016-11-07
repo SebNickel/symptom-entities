@@ -7,9 +7,9 @@ Gets the semantic categories associated with a fine sense key by the Idilia Lang
  */
 class CategoriesQueryPipeline(client: IdiliaClient) {
 
-    def apply(fsk: String): List[String] = {
+    def apply(fineSenseKey: String): List[String] = {
 
-        val query = PackageCategoriesQuery(fsk)
+        val query = PackageCategoriesQuery(fineSenseKey)
 
         val response = client(query)
 
